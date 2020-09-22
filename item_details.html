@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles/style.css" >
+        
+        <title>Poly Item Details</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light col-12">
+            <a class="navbar-brand backgr-default" href="index.html"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto d-flex">
+                    <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Genres
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">All Genres</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Blues</a>
+                        <a class="dropdown-item" href="#">Country</a>
+                        <a class="dropdown-item" href="#">EDM</a>
+                        <a class="dropdown-item" href="#">Hip Hop</a>
+                        <a class="dropdown-item" href="#">Jazz</a>
+                        <a class="dropdown-item" href="#">Pop</a>
+                        <a class="dropdown-item" href="#">Rock</a>
+                        <a class="dropdown-item" href="#">Techno</a>
+                    </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Most Popular</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sell.html">Sell</a>
+                    </li>
+                    
+                </ul>
+                
+                <form class="form-inline my-2 my-lg-0">
+                    <a class="backgr-default icon-default" href="#" id="cart-nav-link"></a>
+                    <a class="backgr-default icon-default" href="watchlist.html" id="watchlist-nav-link"></a>
+                    <a class="backgr-default icon-default" href="#" id="profile-nav-link"></a>
+                    
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+        <div class="row def-padding space-between">
+            <div class="col-lg-6 col-xs-12 top-btm-padding">
+                <img class="img-fluid" src="../images/record1.png" alt="Record Image">
+            </div>
+            <div class="col-lg-5 col-xs-12 col-sm-12 col-md-12">
+                <h2 class="top-btm-padding">Best of The Dummies </h2>
+                <h3>The Dummies</h3>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="space-between col-lg-9 col-md-10 col-sm-12">
+                    <p>Type of Record: </p>
+                    <p>12 inch</p>
+                </div>
+                <div class="space-between col-lg-9 col-md-10 col-sm-12">
+                    <p>Year: </p>
+                    <p>1984</p>
+                </div>
+                <div class="space-between col-lg-9 col-md-10 col-sm-12">
+                    <p>Bids: </p>
+                    <p>22</p>
+                </div>
+                <div class="space-between col-lg-9 col-md-10 col-sm-12">
+                    <p>Starting Bid: </p>
+                    <p>$30</p>
+                </div>
+                <div class="space-between col-lg-9 col-md-10 col-sm-12 font-weight-bold">
+                    <p>Current Bid: </p>
+                    <p>$89</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 justify-center space-between">
+            <a class="backgr-default icon-default" href="#" id="watchlist-nav-link"></a>
+            <button type="button" class="btn btn-dark col-lg-2 col-md-2 col-sm-10 col-xs-10" data-toggle="modal" data-target="#bidModal">BID</a>
+        </div>
+
+        <div class="modal fade" id="bidModal" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="placeBid">PLACE BID</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="amount">Enter Bid Amount:</label>
+                                <input type="text" class="form-control" id="amount">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Confirm</button>
+                      </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="reviewModal" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="placeBid">Write a Comment</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="amount">What did you think?</label>
+                                <textarea class="form-control sm-margin " id="fname"></textarea>
+                                <div class="col-12 d-flex lg-margin">
+                                    <div class="stars star-outline hover-fill"></div>
+                                    <div class="stars star-outline hover-fill"></div>
+                                    <div class="stars star-outline hover-fill"></div>
+                                    <div class="stars star-outline hover-fill"></div>
+                                    <div class="stars star-outline hover-fill"></div>
+                                </div>
+                                <button type="button" class="btn btn-dark lg-margin ">Login</button>
+                                <p class="lg-margin top-btm-padding">OR</p>
+                                <label for="fname">First Name</label>
+                                <input type="text" class="form-control sm-margin" id="fname">
+                                <label for="lname">Last Name</label>
+                                <input type="text" class="form-control sm-margin" id="lname">
+                                <label for="date">Date Purchased</label>
+                                <input type="date" class="form-control sm-margin" id="date">
+                     
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Confirm</button>
+                      </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="col-12  def-padding ">
+            <h3 class="col-12">Comments</h3>
+            <a href="item_details.html" data-toggle="modal" data-target="#reviewModal" class="btn btn-light btn-outline-secondary col-lg-2 col-md-2 col-sm-10 col-xs-10">Write Comment</a>
+            <div class="col-12  btm-border top-btm-padding">
+                <div class="row">
+                    <h5 class="col-lg-12 col-sm-12 col-xs-12 ">John Smith</h5>
+                    <p class="col-lg- col-sm-12 col-xs-12 ">Posted 22/07/2020</p>
+                </div>
+                <div class="col-12 d-flex">
+                    <div class="stars star-filled "></div>
+                    <div class="stars star-filled"></div>
+                    <div class="stars star-filled"></div>
+                    <div class="stars star-outline"></div>
+                    <div class="stars star-outline"></div>
+                </div>
+                <p class="col-12 top-btm-padding">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="col-12  btm-border top-btm-padding">
+                <div class="row">
+                    <h5 class="col-lg-12 col-sm-12 col-xs-12 ">Lily Tonkins</h5>
+                    <p class="col-lg- col-sm-12 col-xs-12 ">Posted 04/07/2020</p>
+                </div>
+                <div class="col-12 d-flex">
+                    <div class="stars star-filled "></div>
+                    <div class="stars star-filled"></div>
+                    <div class="stars star-filled"></div>
+                    <div class="stars star-filled"></div>
+                    <div class="stars star-filled"></div>
+                </div>
+                <p class="col-12 top-btm-padding">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="col-12  btm-border top-btm-padding">
+                <div class="row">
+                    <h5 class="col-lg-12 col-sm-12 col-xs-12 ">David Webb</h5>
+                    <p class="col-lg- col-sm-12 col-xs-12 ">Posted 29/05/2020</p>
+                </div>
+                <div class="col-12 d-flex">
+                    <div class="stars star-filled "></div>
+                    <div class="stars star-filled"></div>
+                    <div class="stars star-filled"></div>
+                    <div class="stars star-filled"></div>
+                    <div class="stars star-outline"></div>
+                </div>
+                <p class="col-12 top-btm-padding">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+        </div>
+
+
+
+        <div class="footer col-12 justify-content-center vertical-center text-center">
+            <footer>
+                <div>
+                    <p>Icons made by 
+                        <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a>, 
+                        <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a>, 
+                        <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> and 
+                        <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from 
+                        <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+                    </p>
+                    <p>Website created by Thomas Mills for a QUT project.</p>
+                </div>
+            </footer>
+        </div>  
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+
+</html>
