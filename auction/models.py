@@ -32,6 +32,7 @@ class Item(db.Model):
     bid_number = db.Column(db.Integer, nullable=True)
     status = db.Column(db.String(80), index=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    date_posted = db.Column(db.String, nullable=False)
 
     watchlists = db.relationship('Watchlist', backref='items')
     bids = db.relationship('Bid', backref='items')
