@@ -27,7 +27,9 @@ class Item(db.Model):
     year = db.Column(db.Integer, nullable=False)
     designation = db.Column(db.String(80), nullable=False)
     image = db.Column(db.String(400), nullable=False)
-    value = db.Column(db.Integer, nullable=False)
+    starting_value = db.Column(db.Integer, nullable=False)
+    current_value = db.Column(db.Integer, nullable=False)
+    bid_number = db.Column(db.Integer, nullable=True)
     status = db.Column(db.String(80), index=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
