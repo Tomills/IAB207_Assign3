@@ -1,5 +1,5 @@
 # import flask - from the package import class
-from flask import Flask
+from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -33,7 +33,7 @@ def create_app():
 
     # set the name of the login function that lets user login
     # in our case it is auth.login (blueprintname.viewfunction name)
-    login_manager.login_view = 'auth.login'
+    login_manager.login_view = 'auth.register'
     login_manager.init_app(app)
 
     # create a user loader function takes userid and returns User
@@ -43,6 +43,10 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
 
+    @app.errorhandler(404)
+    def not_found(e):
+        return redirect(url_for('auth.error'))
+
     # importing views module here to avoid circular references
     # a commonly used practice.
     from . import views
@@ -50,5 +54,6 @@ def create_app():
 
     from . import auth
     app.register_blueprint(auth.bp)
+    app.register_blueprint(auth.bp2)
 
     return app

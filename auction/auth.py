@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, flash, render_template, request, url_for, redirect, session, g
+    Blueprint, flash, render_template, request, url_for, redirect, session, g,
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 # from .models import User
@@ -9,18 +9,15 @@ from . import db
 from .models import User, Item
 import os
 from werkzeug.utils import secure_filename
-
+import datetime
 
 # create a blueprint
 bp = Blueprint('auth', __name__)
-
-
-# @bp.route("/sell")
-# def sell():
-#    return render_template('sell.html')
+bp2 = Blueprint('item', __name__, url_prefix='/item')
 
 
 @bp.route("/watchlist")
+@login_required
 def watchlist():
     return render_template('watchlist.html')
 
@@ -28,6 +25,17 @@ def watchlist():
 @bp.route("/item_details")
 def item_details():
     return render_template('item_details.html')
+
+
+@bp2.route("/<id>")
+def show(id):
+    details = Item.query.filter_by(id=id).first()
+    return render_template('created_item_details.html', details=details)
+
+
+@bp.route("/error")
+def error():
+    return render_template('error_view.html')
 
 
 # this is the hint for a login function
@@ -50,7 +58,7 @@ def authenticate():  # view function
         if error is None:
             login_user(u1)
             # this gives the url from where the login page was accessed
-            #nextp = request.args.get('next')
+            # nextp = request.args.get('next')
             # print(nextp)
             # if next is None or not nextp.startswith('/'):
             return redirect(url_for('main.index'))
@@ -94,14 +102,15 @@ def check_upload_file(form):
     fp = form.item_image.data
     filename = fp.filename
     BASE_PATH = os.path.dirname(__file__)
-    upload_path = os.path.join(BASE_PATH, 'static\images',
+    upload_path = os.path.join(BASE_PATH, 'static/images',
                                secure_filename(filename))
-    db_upload_path = 'static\images' + secure_filename(filename)
+    db_upload_path = '/static/images/' + secure_filename(filename)
     fp.save(upload_path)
     return db_upload_path
 
 
 @bp.route('/sell', methods=['GET', 'POST'])
+@login_required
 def sell():
     Sell_Form = SellForm()
     if (Sell_Form.validate_on_submit() == True):
@@ -114,14 +123,17 @@ def sell():
         size = Sell_Form.item_type.data
         release = Sell_Form.item_year.data
         bid = Sell_Form.item_value.data
+        num = 0
         picture = db_file_path
         auction = 'OPEN'
         lister = current_user.get_id()
+
         # create a new user model object
         new_item = Item(name=title, description=symmary, artist=band, genre=group, year=release,
-                        designation=size, image=picture, value=bid, status=auction, user_id=lister)
+                        designation=size, image=picture, starting_value=bid, current_value=bid, bid_number=num, status=auction, user_id=lister)
         db.session.add(new_item)
         db.session.commit()
+
         # commit to the database and redirect to HTML page
         return redirect(url_for('main.index'))
     # the else is called when there is a get message

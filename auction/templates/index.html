@@ -18,42 +18,68 @@
         </form>
     </div>
 </div>
-<h2 class="col-12 def-padding">Most Popular</h2>
-<p class="col-12 def-padding">
 
-    Browse and select some of the most profound and popular records currently on the market. Search for your favourite
-    artists and their newest releases or choose to investigate a hidden gem. Cover the best songs from your favourite
-    artists and catch up on all the singles you may have missed. Scroll through our extensive marketplace collection
-    where you are sure to find an item just right for you!
-</p>
+<h2 class="col-12 def-padding">Newly Created items</h2>
+
 {% for item in items %}
-    <div class="row justify-content-around feat-row  top-btm-padding">
-        <div class="card col-lg-3 col-md-5 col-sm-10 featured">
-            <a href="item_details"><img class="card-img-top" src="{{item.image}}" alt="Card Image"></a>
-            <div class="card-body">
-                <h5 class="card-title">{{item.artist}}</h5>
-                <h6 class="card-title">{{item.name}}</h6>
-                <p class="card-text">{{item.description}}</p>
-                <div class="space-between">
-                    <p class="card-text">Bids: </p>
-                    <p class="card-text">{{item.bids}}</p>
-                </div>
-                <div class="space-between">
-                    <p class="card-text">Current Bid: </p>
-                    <h5 class="card-text">${{item.value}}</h5>
-                </div>
-                <div class="space-between">
-                    <p class="card-text">Status: </p>
-                    <h5 class="card-text">{{item.status}}</h5>
-                </div>
-                <div class="space-between">
-                    <a href="item_details" class="btn btn-dark">More</a>
-                    <a href="watchlist"><i class="far fa-heart"></i></a>
-                </div>
+<div class="row justify-content-around feat-row  top-btm-padding">
+    <div class="card col-lg-3 col-md-5 col-sm-10 featured top-btm-padding">
+        <a href="item_details"><img class="card-img-top" src={{item.image}} alt="Card Image"></a>
+        <div class="card-body">
+            <h5 class="card-title">{{item.artist}}</h5>
+            <h6 class="card-title">{{item.name}}</h6>
+            <p class="card-text">{{item.description}}</p>
+            <div class="space-between">
+                <p class="card-text">Bids: </p>
+                <p class="card-text"> {{item.bid_number}}</p>
+            </div>
+            <div class="space-between">
+                <p class="card-text">Current Bid: </p>
+                <h5 class="card-text">${{item.current_value}}</h5>
+            </div>
+            <div class="space-between">
+                <p class="card-text">Status: </p>
+                <h5 class="card-text">{{item.status}}</h5>
+            </div>
+            <div class="space-between">
+                <a href="item/{{item.id}}" class="btn btn-dark">More</a>
+                <a href="watchlist"><i class="far fa-heart"></i></a>
             </div>
         </div>
-    {% endfor %}
-<!--     
+    </div>
+</div>
+{% endfor %}}
+
+
+<h2 class="col-12 def-padding">Most Popular</h2>
+
+<div class="row justify-content-around feat-row  top-btm-padding">
+    <div class="card col-lg-3 col-md-5 col-sm-10 featured">
+        <a href="item_details"><img class="card-img-top" src="../static/images/record1.png" alt="Card Image"></a>
+        <div class="card-body">
+            <h5 class="card-title">The Dummies</h5>
+            <h6 class="card-title">Best of The Dummies</h6>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.</p>
+            <div class="space-between">
+                <p class="card-text">Bids: </p>
+                <p class="card-text">53</p>
+            </div>
+            <div class="space-between">
+                <p class="card-text">Current Bid: </p>
+                <h5 class="card-text">$89.00</h5>
+            </div>
+            <div class="space-between">
+                <p class="card-text">Status: </p>
+                <h5 class="card-text">Open</h5>
+            </div>
+            <div class="space-between">
+                <a href="item_details" class="btn btn-dark">More</a>
+                <a href="watchlist"><i class="far fa-heart"></i></a>
+            </div>
+        </div>
+    </div>
+
     <div class="card col-lg-3 col-md-5 col-sm-10 featured top-btm-padding">
         <a href="item_details"><img class="card-img-top" src="../static/images/record2.jpg" alt="Card Image"></a>
         <div class="card-body">
@@ -64,7 +90,7 @@
             <div class="space-between">
                 <p class="card-text">Bids: </p>
                 <p class="card-text">44</p>
-            </div> 
+            </div>
             <div class="space-between">
                 <p class="card-text">Current Bid: </p>
                 <h5 class="card-text">$96.00</h5>
@@ -185,7 +211,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 <div class="bg-light top-btm-padding ">
     <h2 class="col-12 def-padding">Popular Genres</h2>
