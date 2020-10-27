@@ -10,10 +10,10 @@
         </h1>
     </div>
     <div class="row">
-        <form class="form-inline col-12 justify-content-center">
+        <form class="form-inline col-12 justify-content-center" action="{{url_for('main.search')}}">
             <div class="hero-search col-lg-4 col-sm-10">
                 <input class="col-10 text-center search-input" type="search" placeholder="Search Vinyl ..."
-                    aria-label="Search">
+                    aria-label="Search" name="search"/>
                 <button class="col-2 search-btn" type="submit"><img src="../static/images/search.svg" width="20px"
                         alt="Search"></button>
             </div>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="space-between">
                         <p class="card-text">Status: </p>
-                        <h5 class="card-text">{{item.status}}</h5>
+                        <h6 class="card-text">{{item.status}}</h6>
                     </div>
                     <div class="space-between">
                         <a href="item_details" class="btn btn-dark">More</a>
@@ -278,7 +278,7 @@
                                 <a href="item_details" class="btn btn-dark">More</a>
                                 <a href="watchlist"><i class="far fa-heart"></i></a>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             {% endfor %}

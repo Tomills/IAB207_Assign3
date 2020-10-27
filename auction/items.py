@@ -12,4 +12,4 @@ def show(id):
     else:
         filteredItems = Item.query.all()
         id += " Genres"
-    return render_template('items_filtered.html', filteredItems=filteredItems, genre=id)
+    return render_template('items_filtered.html', filteredItems=filteredItems, title=id)

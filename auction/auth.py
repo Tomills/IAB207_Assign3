@@ -10,6 +10,7 @@ from .models import User, Item
 import os
 from werkzeug.utils import secure_filename
 import datetime
+from datetime import datetime
 
 # create a blueprint
 bp = Blueprint('auth', __name__)
@@ -127,10 +128,11 @@ def sell():
         picture = db_file_path
         auction = 'OPEN'
         lister = current_user.get_id()
+        today = datetime.now()
 
         # create a new user model object
         new_item = Item(name=title, description=symmary, artist=band, genre=group, year=release,
-                        designation=size, image=picture, starting_value=bid, current_value=bid, bid_number=num, status=auction, user_id=lister)
+                        designation=size, image=picture, starting_value=bid, current_value=bid, bid_number=num, status=auction, user_id=lister, date_posted=today)
         db.session.add(new_item)
         db.session.commit()
 
