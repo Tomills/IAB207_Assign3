@@ -4,7 +4,12 @@
 
 <!-- Recently Added Records Section -->
 
-<h2 class="col-12 def-padding text-center">{{genre}} Records</h2>
+<div class="jumbotron backgr-default vertical-center col-12 genres-bg">
+    <div class="h-75">
+        <h1 class="col-12 text-center text-white font-weight-bold">{{genre}}</h1>
+    </div>
+</div>
+
 <div class="justify-content-around feat-row top-btm-padding d-flex flex-wrap">
     {% for item in filteredItems %}
         <div class="lg-margin col-lg-3 col-md-5 col-sm-10">

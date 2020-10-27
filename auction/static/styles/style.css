@@ -167,6 +167,9 @@ select {
 .jazz-bg {
     background-image: linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, 0.4)), url("../images/chris-bair-A10y2Eq7OHY-unsplash.jpg");
 }
+.genres-bg{
+    background-image: linear-gradient(rgba(0,0,0, 0.6), rgba(0,0,0, 0.6)), url("../images/pexels-expect-best-351265.jpg");
+}
 
 .feat-row {
     margin: 0;
