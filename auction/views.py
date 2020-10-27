@@ -8,3 +8,5 @@ def index():
     items = Item.query.all()
     recentitems = Item.query.order_by(Item.date_posted).limit(6)
     return render_template('index.html', items=items, recentitems=recentitems)
+
+

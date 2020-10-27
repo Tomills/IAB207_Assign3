@@ -56,4 +56,7 @@ def create_app():
     app.register_blueprint(auth.bp)
     app.register_blueprint(auth.bp2)
 
+    from . import items
+    app.register_blueprint(items.bp)
+
     return app
