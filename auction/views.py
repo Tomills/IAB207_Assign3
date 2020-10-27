@@ -13,10 +13,14 @@ def index():
 # route to allow users to search
 @bp.route('/search', methods=['GET', 'POST'])
 def search():
-    if request.args['search']:
-        items = "%" + request.args['search'] + '%'
-        # itemsFiltered = Item.query.filter(Item.artist.like(items)).all()
-        itemsFiltered = Item.query.filter_by(artist=items)
-        return render_template('items_filtered.html', itemsFiltered=itemsFiltered, title='Search')
+    searchArgs = request.args['search']
+    noResult = ""
+    if searchArgs:
+        items = "%" + searchArgs + '%'
+        if Item.query.filter(Item.name.like(items)).all() != None:
+            filteredItems = Item.query.filter(Item.name.like(items)).all()
+        else:
+            noResult = "Sorry, no results for " + searchArgs
+        return render_template('items_filtered.html', filteredItems=filteredItems, title=('Search: ' + searchArgs), noResult=noResult)
     else:   
         return redirect(url_for('main.index'))
