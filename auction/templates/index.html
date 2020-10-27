@@ -243,8 +243,8 @@
 
 <h2 class="col-12 def-padding">All Genres</h2>
 <div class="col-10 offset-1">
-    <div class="row justify-content-around feat-row">
-        <div class=" col-lg-3 col-md-5 col-sm-10  top-btm-padding">
+    <!-- <div class="row justify-content-around feat-row"> -->
+        <!-- <div class=" col-lg-3 col-md-5 col-sm-10  top-btm-padding">
             <div class="col-11 card featured">
                 <a href="item_details"><img class="card-img-top " src="../static/images/record1.png"
                         alt="Card Image"></a>
@@ -269,8 +269,37 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+        <div class="justify-content-around feat-row top-btm-padding d-flex flex-wrap">
+            {% for item in items %}
+                <div class=" col-lg-3 col-md-5 col-sm-10  top-btm-padding">
+                    <div class="col-11 card featured">
+                        <a href="item_details"><img class="card-img-top" src="{{item.image}}" alt="Card Image"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.artist}}</h5>
+                            <h6 class="card-title">{{item.name}}</h6>
+                            <div class="space-between">
+                                <p class="card-text">Bids: </p>
+                                <p class="card-text">{{item.bids}}</p>
+                            </div>
+                            <div class="space-between">
+                                <p class="card-text">Current Bid: </p>
+                                <h5 class="card-text">${{item.current_value}}</h5>
+                            </div>
+                            <div class="space-between">
+                                <p class="card-text">Status: </p>
+                                <h6 class="card-text">{{item.status}}</h6>
+                            </div>
+                            <div class="space-between">
+                                <a href="item_details" class="btn btn-dark">More</a>
+                                <a href="watchlist"><i class="far fa-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-
+<!--         
         <div class=" col-lg-3 col-md-5 col-sm-10  top-btm-padding">
             <div class="col-11 card featured">
                 <a href="item_details"><img class="card-img-top" src="../static/images/record2.jpg"
@@ -571,7 +600,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div> -->
+    <!-- </div> -->
 </div>
 {% endblock %}
