@@ -17,10 +17,15 @@ def search():
     noResult = ""
     if searchArgs:
         items = "%" + searchArgs + '%'
-        if Item.query.filter(Item.name.like(items)).all() != None:
+        filteredItems = ""
+        if len(Item.query.filter(Item.name.like(items)).all()) != 0:
             filteredItems = Item.query.filter(Item.name.like(items)).all()
+        elif len(Item.query.filter(Item.artist.like(items)).all()) != 0 :
+            filteredItems = Item.query.filter(Item.artist.like(items)).all()
+        elif len(Item.query.filter(Item.genre.like(items)).all()) != 0 :
+            filteredItems = Item.query.filter(Item.genre.like(items)).all()
         else:
-            noResult = "Sorry, no results for " + searchArgs
+            noResult = "Sorry, no results for: " + searchArgs
         return render_template('items_filtered.html', filteredItems=filteredItems, title=('Search: ' + searchArgs), noResult=noResult)
     else:   
         return redirect(url_for('main.index'))
