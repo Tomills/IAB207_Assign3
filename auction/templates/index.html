@@ -227,22 +227,22 @@
     <h2 class="col-12 def-padding">Popular Genres</h2>
     <div class="row d-flex justify-content-around text-center text-white">
         <div class="col-lg-3 col-md-5 col-sm-11 col-xs-11 d-flex justify-content-around">
-            <a href="#" class=" text-white jumbotron edm-bg col-11 backgr-cover ">
+            <a href="{{url_for('items.show', id='EDM')}}" class=" text-white jumbotron edm-bg col-11 backgr-cover ">
                 <h4>EDM</h4>
             </a>
         </div>
-        <div href="#" class="col-lg-3 col-md-5 col-sm-11 col-xs-11 d-flex justify-content-around">
-            <a href="#" class="jumbotron hip-hop-bg col-11 backgr-cover text-white">
+        <div class="col-lg-3 col-md-5 col-sm-11 col-xs-11 d-flex justify-content-around">
+            <a href="{{url_for('items.show', id='Hip Hop')}}" class="jumbotron hip-hop-bg col-11 backgr-cover text-white">
                 <h4>Hip Hop</h4>
             </a>
         </div>
         <div class="col-lg-3 col-md-5 col-sm-11 col-xs-11 d-flex justify-content-around">
-            <a href="#" class="jumbotron rock-bg col-11 backgr-cover text-white">
+            <a href="{{url_for('items.show', id='Rock')}}" class="jumbotron rock-bg col-11 backgr-cover text-white">
                 <h4>Rock</h4>
             </a>
         </div>
         <div class="col-lg-3 col-md-5 col-sm-11 col-xs-11 d-flex justify-content-around">
-            <a href="#" class="jumbotron jazz-bg backgr-cover col-11 text-white">
+            <a href="{{url_for('items.show', id='Blues')}}" class="jumbotron jazz-bg backgr-cover col-11 text-white">
                 <h4>Jazz</h4>
             </a>
         </div>
