@@ -3,10 +3,10 @@ from flask import (
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 # from .models import User
-from .forms import LoginForm, RegisterForm, SellForm
+from .forms import LoginForm, RegisterForm, SellForm, BidForm
 from flask_login import login_user, login_required, logout_user, current_user
 from . import db
-from .models import User, Item
+from .models import User, Item, Bid
 import os
 from werkzeug.utils import secure_filename
 import datetime
@@ -30,8 +30,9 @@ def item_details():
 
 @bp2.route("/<id>")
 def show(id):
+    form = BidForm()
     details = Item.query.filter_by(id=id).first()
-    return render_template('created_item_details.html', details=details)
+    return render_template('created_item_details.html', details=details, form=form)
 
 
 @bp.route("/error")
@@ -143,7 +144,39 @@ def sell():
         return render_template('user.html', form=Sell_Form, heading='Sell')
 
 
-@bp.route('/logout')
+@bp.route('/item/<id>/bid', methods=['GET', 'POST'])
+@login_required
+def bid(id):
+    form = BidForm()
+
+    bidder = current_user.get_id()
+    item_obj = id
+    bid = form.value.data
+    time = datetime.now()
+    item_update = Item.query.get(id)
+
+    if form.validate_on_submit():
+        if bid > item_update.current_value:
+            new_bid = Bid(user_id=bidder, item_id=item_obj,
+                          bid_amount=bid, date_added=time)
+            db.session.add(new_bid)
+
+            count = item_update.bid_number
+            item_update.current_value = bid
+            item_update.bid_number = count + 1
+
+            db.session.commit()
+            print('Your comment has been added', 'success')
+            return redirect(url_for('item.show', id=id))
+        else:
+            flash('bid must be higher than current value')
+            return redirect(url_for('item.show', id=id))
+    else:
+        flash('bid must be higher than current value')
+        return redirect(url_for('item.show', id=id))
+
+
+@ bp.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('main.index'))

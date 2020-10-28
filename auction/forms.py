@@ -2,7 +2,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, IntegerField, SelectField, FileField
-from wtforms.validators import InputRequired, Length, Email, EqualTo
+from wtforms.validators import InputRequired, Length, Email, EqualTo, NumberRange
 
 
 # creates the login information
@@ -64,3 +64,10 @@ class SellForm(FlaskForm):
         FileAllowed(ALLOWED_FILE, message='Only supports png, jpg, JPG, PNG')])
 
     submit = SubmitField("Sell")
+
+
+class BidForm(FlaskForm):
+
+    value = IntegerField("Enter a Bid", validators=[NumberRange(min=20), InputRequired
+                                                    ("Please bid higher than the current bid")])
+    submit = SubmitField("Bid")

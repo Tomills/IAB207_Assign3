@@ -57,7 +57,7 @@ class Bid(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     item_id = db.Column(db.Integer, db.ForeignKey('items.id'))
-    bid_amount = db.Column(db.Integer, nullable=False, unique=True)
+    bid_amount = db.Column(db.Integer, nullable=False)
     date_added = db.Column(db.DateTime, default=datetime.now())
 
     def __repr__(self):  # string print method
