@@ -62,3 +62,11 @@ class Bid(db.Model):
 
     def __repr__(self):  # string print method
         return "<Bid: {}>".format(self.bid_amount)
+
+    def select_all_bids(self, conn):
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM bids")
+        rows = cur.fetchall()
+        for row in rows:
+            print(row)
+
