@@ -28,17 +28,22 @@ def item_details():
     return render_template('item_details.html')
 
 
-@bp2.route("/<id>")
-def show(id):
-    form = BidForm()
-    details = Item.query.filter_by(id=id).first()
-    return render_template('created_item_details.html', details=details, form=form)
+
+seller = True
+if seller:
+    @bp2.route("/<item_id>")
+    def show_table(item_id):
+        active_bids = Bid.query.filter_by(item_id=item_id).first()
+        return render_template('seller_details.html', active_bids=active_bids)
+else:
+    @bp2.route("/<id>")
+    def show(id):
+        form = BidForm()
+        details = Item.query.filter_by(id=id).first()
+        return render_template('created_item_details.html', details=details, form=form)
 
 
-@bp.route("/seller_details")
-def show_table(item_id):
-    active_bids = Bid.query.filter_by(item_id=item_id).first()
-    return render_template('seller_details.html', active_bids=active_bids)
+
 
 
 @bp.route("/error")
