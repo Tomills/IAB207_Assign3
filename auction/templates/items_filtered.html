@@ -14,7 +14,7 @@
     {% for item in filteredItems %}
         <div class="lg-margin col-lg-3 col-md-5 col-sm-10">
             <div class="card featured">
-                <a href="../item_details"><img class="card-img-top" src="{{item.image}}" alt="Card Image"></a>
+                <a href="../item/{{item.id}}"><img class="card-img-top" src="{{item.image}}" alt="Card Image"></a>
                 <div class="card-body">
                     <h5 class="card-title">{{item.artist}}</h5>
                     <h6 class="card-title">{{item.name}}</h6>

@@ -68,6 +68,6 @@ class SellForm(FlaskForm):
 
 class BidForm(FlaskForm):
 
-    value = IntegerField("Enter a Bid", validators=[NumberRange(min=20), InputRequired
+    value = IntegerField("Enter Bid Amount:", validators=[NumberRange(min=20), InputRequired
                                                     ("Please bid higher than the current bid")])
     submit = SubmitField("Bid")

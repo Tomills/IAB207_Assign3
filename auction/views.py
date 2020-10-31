@@ -7,7 +7,8 @@ bp = Blueprint('main', __name__)
 def index():
     items = Item.query.all()
     recentitems = Item.query.order_by(Item.date_posted.desc()).limit(6)
-    return render_template('index.html', items=items, recentitems=recentitems)
+    popularitems = Item.query.order_by(Item.bid_number.desc()).limit(6)
+    return render_template('index.html', items=items, recentitems=recentitems, popularitems=popularitems)
 
 
 # route to allow users to search

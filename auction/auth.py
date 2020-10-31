@@ -23,16 +23,11 @@ def watchlist():
     return render_template('watchlist.html')
 
 
-@bp.route("/item_details")
-def item_details():
-    return render_template('item_details.html')
-
-
 @bp2.route("/<id>")
 def show(id):
     form = BidForm()
     details = Item.query.filter_by(id=id).first()
-    return render_template('created_item_details.html', details=details, form=form)
+    return render_template('item_details.html', details=details, form=form)
 
 
 @bp.route("/seller_details")
@@ -167,9 +162,8 @@ def bid(id):
                           bid_amount=bid, date_added=time)
             db.session.add(new_bid)
 
-            count = item_update.bid_number
             item_update.current_value = bid
-            item_update.bid_number = count + 1
+            item_update.bid_number += 1
 
             db.session.commit()
             print('Your comment has been added', 'success')
@@ -178,7 +172,7 @@ def bid(id):
             flash('bid must be higher than current value')
             return redirect(url_for('item.show', id=id))
     else:
-        flash('bid must be higher than current value')
+        flash('Form validation failed')
         return redirect(url_for('item.show', id=id))
 
 
