@@ -29,7 +29,7 @@ def item_details():
 
 
 
-seller = True
+seller = False
 if seller:
     @bp2.route("/<item_id>")
     def show_table(item_id):
