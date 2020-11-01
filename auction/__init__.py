@@ -44,23 +44,23 @@ def create_app():
         return User.query.get(int(user_id))
 
     @app.errorhandler(404)
-    def not_found(e):
+    def unauthorised(e):
         return redirect(url_for('auth.error'))
 
     @app.errorhandler(401)
-    def not_found(e):
+    def forbidden(e):
         return redirect(url_for('auth.error'))
 
     @app.errorhandler(403)
-    def not_found(e):
+    def unresponsive(e):
         return redirect(url_for('auth.error'))
 
     @app.errorhandler(400)
-    def not_found(e):
+    def server_error(e):
         return redirect(url_for('auth.error'))
 
     @app.errorhandler(500)
-    def not_found(e):
+    def not_retrievable(e):
         return redirect(url_for('auth.error'))
 
     # importing views module here to avoid circular references
