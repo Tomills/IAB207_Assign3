@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, flash, render_template, request, url_for, redirect, session, g,
+    Blueprint, flash, render_template, request, url_for, redirect, session, g
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 # from .models import User
@@ -83,7 +83,7 @@ def authenticate():  # view function
             # return redirect(nextp)
         else:
             flash(error)
-    return render_template('user.html', form=login_form, heading='Login')
+    return render_template('user.html', form=login_form, title='Login')
 
 
 @bp.route('/register', methods=['GET', 'POST'])
@@ -113,7 +113,7 @@ def register():
         return redirect(url_for('main.index'))
     # the else is called when there is a get message
     else:
-        return render_template('user.html', form=register, heading='Register')
+        return render_template('user.html', form=register, title='Register')
 
 
 def check_upload_file(form):
@@ -157,7 +157,7 @@ def sell():
         return redirect(url_for('main.index'))
     # the else is called when there is a get message
     else:
-        return render_template('user.html', form=Sell_Form, heading='Sell')
+        return render_template('user.html', form=Sell_Form, user=current_user, title="New Listing")
 
 
 @bp.route('/item/<id>/bid', methods=['GET', 'POST'])
@@ -184,7 +184,7 @@ def bid(id):
             print('Your comment has been added', 'success')
             return redirect(url_for('item.show', id=id))
         else:
-            flash('bid must be higher than current value')
+            flash('Bid must be higher than current value')
             return redirect(url_for('item.show', id=id))
     else:
         flash('Form validation failed')
