@@ -1,5 +1,5 @@
 # import flask - from the package import class
-import os 
+# import os 
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
@@ -18,8 +18,8 @@ def create_app():
     app.debug = True
     app.secret_key = 'utroutoru'
     # set the app configuration data
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///marketplace.sqlite'
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///marketplace.sqlite'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
     # initialize db with flask app
     db.init_app(app)
 
@@ -33,8 +33,6 @@ def create_app():
     # initialize the login manager
     login_manager = LoginManager()
 
-    # set the name of the login function that lets user login
-    # in our case it is auth.login (blueprintname.viewfunction name)
     login_manager.login_view = 'auth.register'
     login_manager.init_app(app)
 
