@@ -29,8 +29,11 @@ def show(id):
     seller = False
     if current_user.get_id() != None :
         user = int(current_user.get_id())
-        itemUserId = int(Item.query.get(id).user_id )
-        seller = (itemUserId == user)
+        try:
+            itemUserId = int(Item.query.get(id).user_id)
+            seller = (itemUserId == user)
+        except:
+            seller = False
 
     details = Item.query.filter_by(id=id).first()
 
