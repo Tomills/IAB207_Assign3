@@ -83,9 +83,9 @@
                             {% endif %}
 
 
-                            <a class="btn btn-primary btn-block" href="register" role="button">New User</a>
-                            <a class="btn btn-primary btn-block" href='login' role="button">Login</a>
-                            <a class="btn btn-primary btn-block" href='logout' role="button">Logout</a>
+                            <a class="btn btn-primary btn-block" href="{{url_for('auth.register')}}" role="button">New User</a>
+                            <a class="btn btn-primary btn-block" href="{{url_for('auth.authenticate')}}" role="button">Login</a>
+                            <a class="btn btn-primary btn-block" href="{{url_for('auth.logout')}}" role="button">Logout</a>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
