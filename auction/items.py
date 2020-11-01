@@ -16,3 +16,6 @@ def show(id):
         filteredItems = Item.query.all()
         id += " Genres"
     return render_template('items_filtered.html', filteredItems=filteredItems, title=id)
+
+
+
