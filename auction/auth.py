@@ -32,12 +32,13 @@ def show(id):
         itemUserId = int(Item.query.get(id).user_id )
         seller = (itemUserId == user)
 
+    details = Item.query.filter_by(id=id).first()
+
     if seller:
-        form = CloseAuctionForm()
         details = Item.query.filter_by(id=id).first()
         active_bids = Bid.query.filter_by(id=id).first()
-        return render_template('seller_details.html', details=details, form=form),\
-            render_template('seller_details.html', active_bids=active_bids)
+        form = CloseAuctionForm()
+        return render_template('seller_details.html', active_bids=active_bids, details=details, form=form)
     else:
         form = BidForm()
         details = Item.query.filter_by(id=id).first()
