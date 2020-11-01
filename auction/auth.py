@@ -26,12 +26,14 @@ def watchlist():
 
 @bp2.route("/<id>")
 def show(id):
-    user = int(current_user.get_id())
-    itemUserId = int(Item.query.get(id).user_id )
-    seller = (itemUserId == user)
-    flash(itemUserId)
-    flash(user)
-    flash(seller)
+    seller = False
+    if current_user.get_id() != None :
+        user = int(current_user.get_id())
+        itemUserId = int(Item.query.get(id).user_id )
+        seller = (itemUserId == user)
+        flash(itemUserId)
+        flash(user)
+        flash(seller)
 
     if seller:
         form = CloseAuctionForm()
