@@ -3,7 +3,7 @@ from flask import (
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 # from .models import User
-from .forms import LoginForm, RegisterForm, SellForm, BidForm
+from .forms import LoginForm, RegisterForm, SellForm, BidForm, CloseAuctionForm
 from flask_login import login_user, login_required, logout_user, current_user
 from . import db
 from .models import User, Item, Bid, Watchlist
@@ -72,16 +72,32 @@ def indexwatchlist_del(id):
     
 
 
-@bp.route("/item_details")
-def item_details():
-    return render_template('item_details.html')
-
 
 @bp2.route("/<id>")
 def show(id):
-    form = BidForm()
+    seller = False
+    if current_user.get_id() != None :
+        user = int(current_user.get_id())
+        try:
+            itemUserId = int(Item.query.get(id).user_id)
+            seller = (itemUserId == user)
+        except:
+            seller = False
+
     details = Item.query.filter_by(id=id).first()
-    return render_template('created_item_details.html', details=details, form=form)
+
+    if seller:
+        details = Item.query.filter_by(id=id).first()
+        active_bids = Bid.query.filter_by(id=id).first()
+        form = CloseAuctionForm()
+        return render_template('seller_details.html', active_bids=active_bids, details=details, form=form)
+    else:
+        form = BidForm()
+        details = Item.query.filter_by(id=id).first()
+        return render_template('item_details.html', details=details, form=form)
+
+
+
 
 
 @bp.route("/error")
@@ -116,7 +132,7 @@ def authenticate():  # view function
             # return redirect(nextp)
         else:
             flash(error)
-    return render_template('user.html', form=login_form, heading='Login')
+    return render_template('user.html', form=login_form, title='Login')
 
 
 @bp.route('/register', methods=['GET', 'POST'])
@@ -146,7 +162,7 @@ def register():
         return redirect(url_for('main.index'))
     # the else is called when there is a get message
     else:
-        return render_template('user.html', form=register, heading='Register')
+        return render_template('user.html', form=register, title='Register')
 
 
 def check_upload_file(form):
@@ -190,7 +206,7 @@ def sell():
         return redirect(url_for('main.index'))
     # the else is called when there is a get message
     else:
-        return render_template('user.html', form=Sell_Form, heading='Sell')
+        return render_template('user.html', form=Sell_Form, user=current_user, title="New Listing")
 
 
 @bp.route('/item/<id>/bid', methods=['GET', 'POST'])
@@ -210,18 +226,17 @@ def bid(id):
                           bid_amount=bid, date_added=time)
             db.session.add(new_bid)
 
-            count = item_update.bid_number
             item_update.current_value = bid
-            item_update.bid_number = count + 1
+            item_update.bid_number += 1
 
             db.session.commit()
             print('Your comment has been added', 'success')
             return redirect(url_for('item.show', id=id))
         else:
-            flash('bid must be higher than current value')
+            flash('Bid must be higher than current value')
             return redirect(url_for('item.show', id=id))
     else:
-        flash('bid must be higher than current value')
+        flash('Form validation failed')
         return redirect(url_for('item.show', id=id))
 
 

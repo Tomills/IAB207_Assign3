@@ -1,4 +1,5 @@
 # import flask - from the package import class
+import os 
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
@@ -18,6 +19,7 @@ def create_app():
     app.secret_key = 'utroutoru'
     # set the app configuration data
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///marketplace.sqlite'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
     # initialize db with flask app
     db.init_app(app)
 
@@ -45,6 +47,22 @@ def create_app():
 
     @app.errorhandler(404)
     def not_found(e):
+        return redirect(url_for('auth.error'))
+
+    @app.errorhandler(401)
+    def unauthorised(e):
+        return redirect(url_for('auth.error'))
+
+    @app.errorhandler(403)
+    def forbidden(e):
+        return redirect(url_for('auth.error'))
+
+    @app.errorhandler(400)
+    def not_retrievable(e):
+        return redirect(url_for('auth.error'))
+
+    @app.errorhandler(500)
+    def server_error(e):
         return redirect(url_for('auth.error'))
 
     # importing views module here to avoid circular references

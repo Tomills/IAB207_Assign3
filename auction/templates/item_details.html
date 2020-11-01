@@ -1,34 +1,48 @@
 {% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block content %}
+
+<div class="container-fluid">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+</div>
+
 <div class="row def-padding space-between">
     <div class="col-lg-6 col-xs-12 top-btm-padding">
-        <img class="img-fluid" src="../static/images/record1.jpg" alt="Record Image">
+        <img class="img-fluid" src={{details.image}} alt="Record Image">
     </div>
     <div class="col-lg-5 col-xs-12 col-sm-12 col-md-12">
-        <h2 class="top-btm-padding">Best of The Dummies </h2>
-        <h3>The Dummies</h3>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua.</p>
+        <h2 class="top-btm-padding">{{details.name}}</h2>
+        <h3>{{details.artist}}</h3>
+        <p class="card-text">{{details.description}}</p>
         <div class="space-between col-lg-9 col-md-10 col-sm-12">
             <p>Type of Record: </p>
-            <p>12 inch</p>
+            <p>{{details.designation}}</p>
         </div>
         <div class="space-between col-lg-9 col-md-10 col-sm-12">
             <p>Year: </p>
-            <p>1984</p>
+            <p>{{details.year}}</p>
         </div>
         <div class="space-between col-lg-9 col-md-10 col-sm-12">
             <p>Bids: </p>
-            <p>22</p>
+            <p>{{details.bid_number}}</p>
         </div>
         <div class="space-between col-lg-9 col-md-10 col-sm-12">
             <p>Starting Bid: </p>
-            <p>$30</p>
+            <p>${{details.starting_value}}</p>
         </div>
         <div class="space-between col-lg-9 col-md-10 col-sm-12 font-weight-bold">
             <p>Current Bid: </p>
-            <p>$89</p>
+            <p>${{details.current_value}}</p>
         </div>
     </div>
 </div>
@@ -48,16 +62,20 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="amount">Enter Bid Amount:</label>
-                    <input type="text" class="form-control" id="amount">
+            <form action={{"/item/{}/bid".format(details.id)}} method="POST">
+                {{ form.csrf_token }}
+                <div class="modal-body justify-center">
+                    <div class="form-group text-center">
+                        {{ form.value.label }}
+                        <br>
+                        {{ form.value }}
+                    </div>  
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    {{ form.submit(class_="btn btn-primary") }}
+                </div>
+            </form>
         </div>
     </div>
 </div>

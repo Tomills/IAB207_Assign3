@@ -67,164 +67,35 @@
 <!-- Popular Records Section-->
 
 <h2 class="col-12 def-padding">Most Popular</h2>
-<div class="row justify-content-around feat-row  top-btm-padding">
-    <div class="card col-lg-3 col-md-5 col-sm-10 featured">
-        <a href="item_details"><img class="card-img-top" src="../static/images/record1.png" alt="Card Image"></a>
-        <div class="card-body">
-            <h5 class="card-title">The Dummies</h5>
-            <h6 class="card-title">Best of The Dummies</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.</p>
-            <div class="space-between">
-                <p class="card-text">Bids: </p>
-                <p class="card-text">53</p>
-            </div>
-            <div class="space-between">
-                <p class="card-text">Current Bid: </p>
-                <h5 class="card-text">$89.00</h5>
-            </div>
-            <div class="space-between">
-                <p class="card-text">Status: </p>
-                <h5 class="card-text">Open</h5>
-            </div>
-            <div class="space-between">
-                <a href="item_details" class="btn btn-dark">More</a>
-                <a href="watchlist"><i class="far fa-heart"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="card col-lg-3 col-md-5 col-sm-10 featured top-btm-padding">
-        <a href="item_details"><img class="card-img-top" src="../static/images/record2.jpg" alt="Card Image"></a>
-        <div class="card-body">
-            <h5 class="card-title">The Dummies</h5>
-            <h6 class="card-title">Best of The Dummies</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.</p>
-            <div class="space-between">
-                <p class="card-text">Bids: </p>
-                <p class="card-text">44</p>
-            </div>
-            <div class="space-between">
-                <p class="card-text">Current Bid: </p>
-                <h5 class="card-text">$96.00</h5>
-            </div>
-            <div class="space-between">
-                <p class="card-text">Status: </p>
-                <h5 class="card-text">Open</h5>
-            </div>
-            <div class="space-between">
-                <a href="item_details" class="btn btn-dark">More</a>
-                <a href="watchlist"><i class="far fa-heart"></i></a>
+<div class="justify-content-around feat-row top-btm-padding d-flex flex-wrap">
+    {% for item in popularitems %}
+    <div class="lg-margin col-lg-3 col-md-5 col-sm-10">
+        <div class="card  featured">
+            <a href="item/{{item.id}}"><img class="card-img-top" src="{{item.image}}" alt="Card Image"></a>
+            <div class="card-body">
+                <h5 class="card-title">{{item.artist}}</h5>
+                <h6 class="card-title">{{item.name}}</h6>
+                <p class="card-text">{{item.description}}</p>
+                <div class="space-between">
+                    <p class="card-text">Bids: </p>
+                    <p class="card-text">{{item.bid_number}}</p>
+                </div>
+                <div class="space-between">
+                    <p class="card-text">Current Bid: </p>
+                    <h5 class="card-text">${{item.current_value}}</h5>
+                </div>
+                <div class="space-between">
+                    <p class="card-text">Status: </p>
+                    <h6 class="card-text">{{item.status}}</h6>
+                </div>
+                <div class="space-between">
+                    <a href="item/{{item.id}}" class="btn btn-dark">More</a>
+                    <a href="watchlist"><i class="far fa-heart"></i></a>
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="card col-lg-3 col-md-5 col-sm-10 featured">
-        <a href="item_details"><img class="card-img-top" src="../static/images/record3.jpeg" alt="Card Image"></a>
-        <div class="card-body">
-            <h5 class="card-title">The Dummies</h5>
-            <h6 class="card-title">Best of The Dummies</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.</p>
-            <div class="space-between">
-                <p class="card-text">Bids: </p>
-                <p class="card-text">38</p>
-            </div>
-            <div class="space-between">
-                <p class="card-text">Current Bid: </p>
-                <h5 class="card-text">$84.00</h5>
-            </div>
-            <div class="space-between">
-                <p class="card-text">Status: </p>
-                <h5 class="card-text">Open</h5>
-            </div>
-            <div class="space-between">
-                <a href="item_details" class="btn btn-dark">More</a>
-                <a href="watchlist"><i class="fas fa-heart"></i></a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row justify-content-around feat-row  top-btm-padding">
-    <div class="card col-lg-3 col-md-5 col-sm-10 featured">
-        <a href="item_details"><img class="card-img-top" src="../static/images/record4.jpg" alt="Card Image"></a>
-        <div class="card-body">
-            <h5 class="card-title">The Dummies</h5>
-            <h6 class="card-title">Best of The Dummies</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.</p>
-            <div class="space-between">
-                <p class="card-text">Bids: </p>
-                <p class="card-text">37</p>
-            </div>
-            <div class="space-between">
-                <p class="card-text">Current Bid: </p>
-                <h5 class="card-text">$125.00</h5>
-            </div>
-            <div class="space-between">
-                <p class="card-text">Status: </p>
-                <h5 class="card-text">Open</h5>
-            </div>
-            <div class="space-between">
-                <a href="item_details" class="btn btn-dark">More</a>
-                <a href="watchlist"><i class="far fa-heart"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="card col-lg-3 col-md-5 col-sm-10 featured">
-        <a href="item_details"><img class="card-img-top" src="../static/images/record5.jpg" alt="Card Image"></a>
-        <div class="card-body">
-            <h5 class="card-title">The Dummies</h5>
-            <h6 class="card-title">Best of The Dummies</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.</p>
-            <div class="space-between">
-                <p class="card-text">Bids: </p>
-                <p class="card-text">26</p>
-            </div>
-            <div class="space-between">
-                <p class="card-text">Current Bid: </p>
-                <h5 class="card-text">$62.00</h5>
-            </div>
-            <div class="space-between">
-                <p class="card-text">Status: </p>
-                <h5 class="card-text">Open</h5>
-            </div>
-            <div class="space-between">
-                <a href="item_details" class="btn btn-dark">More</a>
-                <a href="watchlist"><i class="far fa-heart"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="card col-lg-3 col-md-5 col-sm-10 featured">
-        <a href="item_details"><img class="card-img-top" src="../static/images/record6.jpg" alt="Card Image"></a>
-        <div class="card-body">
-            <h5 class="card-title">The Dummies</h5>
-            <h6 class="card-title">Best of The Dummies</h6>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.</p>
-            <div class="space-between">
-                <p class="card-text">Bids: </p>
-                <p class="card-text">22</p>
-            </div>
-            <div class="space-between">
-                <p class="card-text">Current Bid: </p>
-                <h5 class="card-text">$31.00</h5>
-            </div>
-            <div class="space-between">
-                <p class="card-text">Status: </p>
-                <h5 class="card-text">Open</h5>
-            </div>
-            <div class="space-between">
-                <a href="item_details" class="btn btn-dark">More</a>
-                <a href="watchlist"><i class="far fa-heart"></i></a>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
 </div>
 
 
@@ -266,13 +137,13 @@
         {% for item in items %}
         <div class=" col-lg-3 col-md-5 col-sm-10  top-btm-padding">
             <div class="col-11 card featured">
-                <a href="item_details"><img class="card-img-top" src="{{item.image}}" alt="Card Image"></a>
+                <a href="item/{{item.id}}"><img class="card-img-top" src="{{item.image}}" alt="Card Image"></a>
                 <div class="card-body">
                     <h5 class="card-title">{{item.artist}}</h5>
                     <h6 class="card-title">{{item.name}}</h6>
                     <div class="space-between">
                         <p class="card-text">Bids: </p>
-                        <p class="card-text">{{item.bids}}</p>
+                        <p class="card-text">{{item.bid_number}}</p>
                     </div>
                     <div class="space-between">
                         <p class="card-text">Current Bid: </p>

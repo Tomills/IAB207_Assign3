@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+<!-- {% extends 'item_details.html' %} -->
 {% import "bootstrap/wtf.html" as wtf %}
 
 
@@ -16,7 +16,6 @@
     {% endwith %}
 
 </div>
-
 <div class="row def-padding space-between">
     <div class="col-lg-6 col-xs-12 top-btm-padding">
         <img class="img-fluid" src={{details.image}} alt="Record Image">
@@ -43,7 +42,7 @@
         </div>
         <div class="space-between col-lg-9 col-md-10 col-sm-12 font-weight-bold">
             <p>Current Bid: </p>
-            <p>${{details.current_value}}</p>
+            <p>${{details.bid_number}}</p>
         </div>
     </div>
 </div>
