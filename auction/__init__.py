@@ -1,4 +1,5 @@
 # import flask - from the package import class
+import os 
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
