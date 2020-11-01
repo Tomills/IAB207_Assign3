@@ -71,3 +71,7 @@ class BidForm(FlaskForm):
     value = IntegerField("Enter a Bid", validators=[NumberRange(min=20), InputRequired
                                                     ("Please bid higher than the current bid")])
     submit = SubmitField("Bid")
+
+class CloseAuctionForm(FlaskForm):
+    submit = SubmitField("Close Auction")
+

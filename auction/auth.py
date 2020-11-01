@@ -3,7 +3,7 @@ from flask import (
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 # from .models import User
-from .forms import LoginForm, RegisterForm, SellForm, BidForm
+from .forms import LoginForm, RegisterForm, SellForm, BidForm, CloseAuctionForm
 from flask_login import login_user, login_required, logout_user, current_user
 from . import db
 from .models import User, Item, Bid
@@ -28,13 +28,15 @@ def item_details():
     return render_template('item_details.html')
 
 
-#user = current_user.get_id()
-#seller = (Item.query.get(id) == user)
-seller = False
+try:
+    user = current_user.get_id()
+    seller = (Item.query.get(id) == user)
+except:
+    seller = False
 @bp2.route("/<id>")
 def show(id):
     if seller:
-        form = BidForm()
+        form = CloseAuctionForm()
         details = Item.query.filter_by(id=id).first()
         active_bids = Bid.query.filter_by(id=id).first()
         return render_template('seller_details.html', details=details, form=form),\
