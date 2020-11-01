@@ -184,7 +184,7 @@ def bid(id):
             print('Your comment has been added', 'success')
             return redirect(url_for('item.show', id=id))
         else:
-            flash('bid must be higher than current value')
+            flash('Bid must be higher than current value')
             return redirect(url_for('item.show', id=id))
     else:
         flash('Form validation failed')
