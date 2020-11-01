@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, flash, render_template, request, url_for, redirect, session, g,
+    Blueprint, flash, render_template, request, url_for, redirect, session, g
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 # from .models import User
@@ -154,7 +154,7 @@ def sell():
         return redirect(url_for('main.index'))
     # the else is called when there is a get message
     else:
-        return render_template('user.html', form=Sell_Form, heading='Sell')
+        return render_template('user.html', form=Sell_Form, user=current_user)
 
 
 @bp.route('/item/<id>/bid', methods=['GET', 'POST'])

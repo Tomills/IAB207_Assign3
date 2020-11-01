@@ -23,10 +23,18 @@
 </div>
 
 
+<div class="bg-sell col-md-12 backgr-default">
+    <div class="bg-light col-md-8 col-sm-12 offset-sm-0 offset-md-2">
+        <div class="def-padding text-center">
+            <h2>New Listing</h2>
+            <p>For <i>{{user.name}}</i></p>
+            <p>Need to Login? <a href="login">Click here to login</a>.</p>
+        </div>
+        <div class="col-8 text-center offset-2">
+            {{wtf.quick_form(form, button_map={'submit':'dark'})}}
+        </div>
 
-<!-- Form rendering is simple and easy if using bootstrap -->
-<div class="col-md-6">
-    {{wtf.quick_form(form)}}
+    </div>
 </div>
 
 <!-- When you have login form, then do show the user a link to register -->

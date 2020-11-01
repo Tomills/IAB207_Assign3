@@ -45,14 +45,14 @@ class SellForm(FlaskForm):
 
     ALLOWED_FILE = {'png', 'jpg', 'JPG', 'PNG'}
 
-    item_name = StringField("Record Title", validators=[
+    item_name = StringField("Name of Record", validators=[
                             InputRequired("Please enter a title for the record")])
-    item_artist = StringField("Record Artist", validators=[
+    item_artist = StringField("Artist", validators=[
                               InputRequired("Please enter an artist for the record")])
     item_description = StringField("Record Description", validators=[
                                    InputRequired("Please enter a description for the record")])
     item_genre = SelectField(
-        'Record Genre', choices=genre_options, validators=[InputRequired()])
+        'Genre', choices=genre_options, validators=[InputRequired()])
     item_type = SelectField(
         'Record Type', choices=type_options, validators=[InputRequired()])
     item_year = IntegerField("Record Year", validators=[InputRequired
