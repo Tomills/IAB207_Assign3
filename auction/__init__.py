@@ -47,6 +47,22 @@ def create_app():
     def not_found(e):
         return redirect(url_for('auth.error'))
 
+    @app.errorhandler(401)
+    def not_found(e):
+        return redirect(url_for('auth.error'))
+
+    @app.errorhandler(403)
+    def not_found(e):
+        return redirect(url_for('auth.error'))
+
+    @app.errorhandler(400)
+    def not_found(e):
+        return redirect(url_for('auth.error'))
+
+    @app.errorhandler(500)
+    def not_found(e):
+        return redirect(url_for('auth.error'))
+
     # importing views module here to avoid circular references
     # a commonly used practice.
     from . import views
