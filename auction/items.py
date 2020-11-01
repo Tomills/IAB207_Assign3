@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from .models import Item
+from .models import Item, Watchlist
 from . import db
 
 
@@ -13,3 +13,12 @@ def show(id):
         filteredItems = Item.query.all()
         id += " Genres"
     return render_template('items_filtered.html', filteredItems=filteredItems, title=id)
+
+
+#testing thing for watchlist.
+# @bp.route('/<id>', methods = ['GET', 'POST'])
+# def watchist(id):
+#     wl_form = AddToWatchlistForm()
+#     del_form = RemoveFromWatchlistForm()
+
+#alreadyOnWatchlist = watchlist.query.filter_by(user_id = current_user.get_id())

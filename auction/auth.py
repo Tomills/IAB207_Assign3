@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from .forms import LoginForm, RegisterForm, SellForm, BidForm
 from flask_login import login_user, login_required, logout_user, current_user
 from . import db
-from .models import User, Item, Bid
+from .models import User, Item, Bid, Watchlist
 import os
 from werkzeug.utils import secure_filename
 import datetime
@@ -17,10 +17,59 @@ bp = Blueprint('auth', __name__)
 bp2 = Blueprint('item', __name__, url_prefix='/item')
 
 
+#-- Watchlist Data 
 @bp.route("/watchlist")
 @login_required
 def watchlist():
-    return render_template('watchlist.html')
+    user_id = current_user.get_id()
+    watchlist = Watchlist.query.with_entities(Watchlist.id, Watchlist.date_added, Item.current_value, Item.bid_number, Item.status, Item.image).filter_by(user_id=user_id).join(Item).order_by(Watchlist.date_added)
+    
+    return render_template('watchlist.html', watchlist=watchlist)
+
+
+# -- Populating the Watchlist
+@bp.route("/watchlist/<id>/add")
+@login_required
+def watchlist_add(id):
+    user_id = current_user.get_id()
+    item_obj = id
+    time = datetime.now()
+
+    new_watchlist = Watchlist(user_id=user_id, item_id=item_obj, date_added=time)
+    db.session.add(new_watchlist)
+    db.session.commit()
+
+    return redirect("/")
+
+
+# -- Removing item from the Watchlist
+@bp.route("/watchlist/<id>/del")
+@login_required
+def watchlist_del(id):
+    watchlist_id = id
+
+    rem_watchlist = Watchlist.query.filter_by(id=watchlist_id).first()
+    db.session.delete(rem_watchlist)
+
+    db.session.commit()
+
+    return redirect("/watchlist")
+
+
+# -- Removing item from the Watchlist from Index page
+@bp.route("/indexwatchlist/<id>/del")
+@login_required
+def indexwatchlist_del(id):
+    watchlist_id = id
+
+    rem_watchlist = Watchlist.query.filter_by(id=watchlist_id).first()
+    db.session.delete(rem_watchlist)
+
+    db.session.commit()
+
+    return redirect("/")
+
+    
 
 
 @bp.route("/item_details")
@@ -148,7 +197,7 @@ def sell():
 @login_required
 def bid(id):
     form = BidForm()
-
+    print("running......")
     bidder = current_user.get_id()
     item_obj = id
     bid = form.value.data

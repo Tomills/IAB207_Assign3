@@ -6,6 +6,51 @@
         <div class="def-padding text-center row">
             <h2>Your Watchlist</h2>
         </div>
+    <!-- trial1 -->
+    <div class="d-flex justify-content-center">
+        <div class="btm-border col-10"></div>
+    </div>
+
+        <!--<div class="justify-content-around feat-row top-btm-padding d-flex flex-wrap">-->
+            {% for item in watchlist %}
+            <div class="col-12 d-lg-flex justify-content-around def-padding">
+                <div class="card  featured">
+                    <a href="item/{{item.id}}"><img class="card-img-top" src="{{item.image}}" alt="Card Image"></a>
+                    <div class="card-body" class="d-flex justify-content-around align-items-center col-lg-6 col-sm-12">
+                        <h5 class="card-title">{{item.artist}}</h5>
+                        <h6 class="card-title">{{item.name}}</h6>
+                        <p class="card-text">{{item.description}}</p>
+                        <div class="space-between">
+                            <p class="card-text">Bids: </p>
+                            <p class="card-text">{{item.bid_number}}</p>
+                        </div>
+                        <div class="space-between">
+                            <p class="card-text">Current Bid: </p>
+                            <h5 class="card-text">${{item.current_value}}</h5>
+                        </div>
+                        <!--<div class="space-between">
+                            <p class="card-text">Bid Amount: </p>
+                            <h6 class="card-text">{{item.bid_amount}}</h6>
+                        </div> -->
+                        <div class="space-between">
+                            <p class="card-text">Status: </p>
+                            <h6 class="card-text">{{item.status}}</h6>
+                        </div>
+                        <div class="space-between">
+                            <p class="card-text">Date Added to Watchlist: </p>
+                            <h6 class="card-text">{{item.date_added.strftime('%Y-%m-%d')}}</h6>
+                        </div>                         
+                        <div class="space-between">
+                            <a href="watchlist/{{item.id}}/del" class="btn btn-dark">Remove</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    <!-- trail1 -->
+
+    <!--
         <div class="d-flex justify-content-center">
             <div class="btm-border col-10"></div>
         </div>
@@ -115,3 +160,6 @@
     </div>
 </div>
 {% endblock %}
+
+
+--> 

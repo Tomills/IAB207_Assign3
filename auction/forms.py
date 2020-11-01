@@ -71,3 +71,14 @@ class BidForm(FlaskForm):
     value = IntegerField("Enter a Bid", validators=[NumberRange(min=20), InputRequired
                                                     ("Please bid higher than the current bid")])
     submit = SubmitField("Bid")
+
+# For Watchlist
+# Add to Watchlist
+#class AddToWatchlistForm(FlaskForm):
+    #AddToWatchlist = SubmitField("far fa-heart")
+
+#class RemoveFromWatchlistForm(FlaskForm): 
+#    RemoveFromWatchlist = SubmitField("Remove From Watchlist")
+
+
+#Remove from Watchlist

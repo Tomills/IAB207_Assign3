@@ -48,7 +48,14 @@
                 </div>
                 <div class="space-between">
                     <a href="item/{{item.id}}" class="btn btn-dark">More</a>
-                    <a href="watchlist"><i class="far fa-heart"></i></a>
+                    {% if item.status=="OPEN" %}
+                        {% if item.watchlist_id==None %}
+                            <a href="watchlist/{{item.id}}/add"> <i class="far fa-heart"></i></a>
+                        {% else %}
+                            <a href="indexwatchlist/{{item.watchlist_id}}/del"> <i class="fas fa-heart"></i></a>
+                        {% endif %}
+                    {% endif %}
+
                 </div>
             </div>
         </div>
