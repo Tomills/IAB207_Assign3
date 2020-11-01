@@ -3,7 +3,7 @@ from flask import (
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 # from .models import User
-from .forms import LoginForm, RegisterForm, SellForm, BidForm
+from .forms import LoginForm, RegisterForm, SellForm, BidForm, CloseAuctionForm
 from flask_login import login_user, login_required, logout_user, current_user
 from . import db
 from .models import User, Item, Bid
@@ -23,17 +23,29 @@ def watchlist():
     return render_template('watchlist.html')
 
 
+
 @bp2.route("/<id>")
 def show(id):
-    form = BidForm()
-    details = Item.query.filter_by(id=id).first()
-    return render_template('item_details.html', details=details, form=form)
+    user = int(current_user.get_id())
+    itemUserId = int(Item.query.get(id).user_id )
+    seller = (itemUserId == user)
+    flash(itemUserId)
+    flash(user)
+    flash(seller)
+
+    if seller:
+        form = CloseAuctionForm()
+        details = Item.query.filter_by(id=id).first()
+        active_bids = Bid.query.filter_by(id=id).first()
+        return render_template('seller_details.html', details=details, form=form),\
+            render_template('seller_details.html', active_bids=active_bids)
+    else:
+        form = BidForm()
+        details = Item.query.filter_by(id=id).first()
+        return render_template('item_details.html', details=details, form=form)
 
 
-@bp.route("/seller_details")
-def show_table(item_id):
-    active_bids = Bid.query.filter_by(item_id=item_id).first()
-    return render_template('seller_details.html', active_bids=active_bids)
+
 
 
 @bp.route("/error")
